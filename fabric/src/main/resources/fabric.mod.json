@@ -1,0 +1,39 @@
+{
+    "schemaVersion": 1,
+    "id": "avalonbase",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "issues": "https://github.com/Huziyang520/AvalonBase/issues"
+    },
+    "license": "${license}",
+    "icon": "assets/avalonbase/textures/avalonbase.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.avalon.base.AvalonBaseMod"
+        ],
+        "client": [
+            "com.avalon.base.client.AvalonBaseClient"
+        ]
+    },
+    "mixins": [
+        "${mod_id}.fabric.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.14",
+        "fabric-api": "*",
+        "minecraft": ">=1.20.1 <1.20.5",
+        "java": ">=17"
+    },
+    "custom": {
+        "modmenu": {
+            "hidden": true,
+            "badges": []
+        }
+    }
+}
