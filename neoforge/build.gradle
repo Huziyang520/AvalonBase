@@ -1,0 +1,36 @@
+plugins {
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev'
+}
+
+base {
+    archivesName = "${mod_name}-neoforge-${minecraft_version}"
+}
+
+neoForge {
+    version = neoforge_version
+
+    // Automated decoration of Dependencies for Dev/Prod builds, and ModMaven publishing
+    addModdingDependenciesTo(sourceSets.main)
+
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+
+    runs {
+        client {
+            client()
+            programArguments.addAll '--username', 'Dev'
+        }
+        server {
+            server()
+        }
+    }
+}
+
+dependencies {
+    // nightconfig（TOML）：NeoForge 运行时自带，编译期显式声明以解析 common 的引用
+    compileOnly group: 'com.electronwill.night-config', name: 'core', version: '3.6.4'
+    compileOnly group: 'com.electronwill.night-config', name: 'toml', version: '3.6.4'
+}
