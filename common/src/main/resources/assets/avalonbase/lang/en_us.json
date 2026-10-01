@@ -1,0 +1,16 @@
+{
+    "avalonbase.demo.title": "AvalonBase Panel Demo",
+    "avalonbase.demo.normal": "Normal",
+    "avalonbase.demo.primary": "Primary",
+    "avalonbase.demo.danger": "Danger",
+    "avalonbase.demo.tab": "Tab",
+    "avalonbase.demo.toastOk": "Toast OK",
+    "avalonbase.demo.toastError": "Toast Error",
+    "avalonbase.demo.toastOkMsg": "Saved successfully",
+    "avalonbase.demo.toastErrorMsg": "Something went wrong",
+    "avalonbase.demo.rowItem": "Enchanted Golden Apple of Very Long Naming",
+    "avalonbase.demo.rowAmount": "123,456,789",
+    "avalonbase.demo.duration": "Cooldown",
+    "avalonbase.demo.durationValue": "1d 14h",
+    "avalonbase.demo.longText": "This is a very long English paragraph used to verify that auto word-wrapping keeps every line inside the panel edge no matter how narrow the window becomes."
+}

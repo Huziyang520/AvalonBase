@@ -1,0 +1,40 @@
+{
+    "schemaVersion": 1,
+    "id": "avalonbase",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "[EN] A shared support library providing GUI themes, a config framework and networking for other mods.\n[CN] 共享支持库：为其他模组提供 GUI 主题、配置框架与网络功能。",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/avalonbase",
+        "issues": "https://github.com/Huziyang520/AvalonBase/issues"
+    },
+    "license": "${license}",
+    "icon": "assets/avalonbase/textures/avalonbase.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.avalon.base.AvalonBaseMod"
+        ],
+        "client": [
+            "com.avalon.base.client.AvalonBaseClient"
+        ]
+    },
+    "mixins": [
+        "${mod_id}.fabric.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.14",
+        "fabric-api": "*",
+        "minecraft": ">=26.3",
+        "java": ">=25"
+    },
+    "custom": {
+        "modmenu": {
+            "hidden": true,
+            "badges": []
+        }
+    }
+}
