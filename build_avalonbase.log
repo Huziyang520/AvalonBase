@@ -1,0 +1,311 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :buildSrc:extractPluginRequests
+> Task :buildSrc:generatePluginAdapters
+> Task :buildSrc:compileJava
+> Task :buildSrc:compileGroovy NO-SOURCE
+> Task :buildSrc:compileGroovyPlugins
+> Task :buildSrc:pluginDescriptors
+> Task :buildSrc:processResources
+> Task :buildSrc:classes
+> Task :buildSrc:jar
+
+> Configure project :fabric
+Fabric Loom: 1.13.6
+The mixin annotation is no longer enabled by default, you should remove any loom.mixin configuration. If you wish to continue to use the mixin AP you can set useLegacyMixinAp = true.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using of the official minecraft mappings is at your own risk!
+Please make sure to read and understand the following license:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# (c) 2020 Microsoft Corporation. These mappings are provided "as-is" and you bear the risk of using them. You may copy and use the mappings for development purposes, but you may not redistribute the mappings complete and unmodified. Microsoft makes no warranties, express or implied, with respect to the mappings provided here.  Use and modification of this document or the source code (in any form) of Minecraft: Java Edition is governed by the Minecraft End User License Agreement available at https://account.mojang.com/documents/minecraft_eula.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+> Task :common:createMinecraftArtifacts
+Performing periodic cache maintenance on C:\Users\HP\.gradle\caches\neoformruntime
+Cleaning intermediate results cache in C:\Users\HP\.gradle\caches\neoformruntime\intermediate_results
+ Maximum age: 744h
+ Maximum cache size: 10 GiB
+ [0;2;3m271 files found[0m
+ [0;2;3m1.6 GiB overall size[0m
+ [0;2;3m0 expired keys found[0m
+[0;2;3m Deleted 14 outdated lock files
+Loaded 107 artifacts from D:\...\Mymods\Only TP Re\AvalonBase\1.21.8\common\build\tmp\createMinecraftArtifacts\nfrt_artifact_manifest.properties
+[1m*** Started working on [4mdownloadJson[0m[0m
+  DL    https://launchermeta.mojang.com/mc/game/version_manifest_v2.json
+  DL    https://piston-meta.mojang.com/v1/packages/04b831604cc6b5fe70f9f1fbf2b83b1ecc07069f/1.21.8.json
+ [1m[92mDONE [0m Completed [4mdownloadJson[0m in 2.40s
+[1m*** Started working on [4mdownloadClient[0m[0m
+[1m*** Started working on [4mdownloadClientMappings[0m[0m
+[1m*** Started working on [4mdownloadServer[0m[0m
+  DL    https://piston-data.mojang.com/v1/objects/bdeb624c3aefba11d9d40f34bc96176350b549b6/client.txt
+  DL    https://piston-data.mojang.com/v1/objects/6bce4ef400e4efaa63a13d5e6f6b500be969ef81/server.jar
+  DL    https://piston-data.mojang.com/v1/objects/a19d9badbea944a4369fd0059e53bf7286597576/client.jar
+ [1m[92mDONE [0m Completed [4mdownloadClientMappings[0m in 3.97s
+[1m*** Started working on [4mmergeMappings[0m[0m
+ RUN   Running external tool net.neoforged.installertools:installertools:2.1.2:fatjar
+ [1m[92mDONE [0m Completed [4mdownloadClient[0m in 7.37s
+ [1m[92mDONE [0m Completed [4mmergeMappings[0m in 3.94s
+ [1m[92mDONE [0m Completed [4mdownloadServer[0m in 36.35s
+[1m*** Started working on [4mextractServer[0m[0m
+ RUN   Running external tool net.neoforged.installertools:installertools:2.1.2:fatjar
+ [1m[92mDONE [0m Completed [4mextractServer[0m in 0.73s
+[1m*** Started working on [4mstripClient[0m[0m
+[1m*** Started working on [4mstripServer[0m[0m
+ [1m[92mDONE [0m Completed [4mstripServer[0m in 3.01s
+ [1m[92mDONE [0m Completed [4mstripClient[0m in 3.89s
+[1m*** Started working on [4mmerge[0m[0m
+ RUN   Running external tool net.neoforged:mergetool:2.0.7:fatjar
+ [1m[92mDONE [0m Completed [4mmerge[0m in 4.12s
+[1m*** Started working on [4mrename[0m[0m
+ RUN   Running external tool net.neoforged:AutoRenamingTool:2.0.8:all
+ [1m[92mDONE [0m Completed [4mrename[0m in 10.56s
+[1m*** Started working on [4mdecompile[0m[0m
+ RUN   Running external tool org.vineflower:vineflower:1.11.1
+ [1m[92mDONE [0m Completed [4mdecompile[0m in 69.75s
+[1m*** Started working on [4minject[0m[0m
+ [1m[92mDONE [0m Completed [4minject[0m in 4.09s
+[1m*** Started working on [4mpatch[0m[0m
+ RUN   Running external tool io.codechicken:DiffPatch:2.0.0.36:all
+ [1m[92mDONE [0m Completed [4mpatch[0m in 9.00s
+[1m*** Started working on [4mtransformSources[0m[0m
+ RUN   Running external tool net.neoforged.jst:jst-cli-bundle:1.0.74
+ [1m[92mDONE [0m Completed [4mtransformSources[0m in 24.74s
+[1m*** Started working on [4mrecompile[0m[0m
+ 89 items on the compile classpath
+ 0 items on the sourcepath
+ Compiling 6106 source files
+Copied 0 resource files
+ [1m[92mDONE [0m Completed [4mrecompile[0m in 62.92s
+[1m*** Started working on [4mmergeWithSources[0m[0m
+ [1m[92mDONE [0m Completed [4mmergeWithSources[0m in 3.51s
+Total runtime: 233.33s
+
+
+> Task :common:compileJava
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\screen\AvalonConfigScreen.java:14: 错误: 程序包net.minecraft.server.permissions不存在
+import net.minecraft.server.permissions.Permissions;
+                                       ^
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\theme\Anim.java:3: 错误: 找不到符号
+import net.minecraft.util.Util;
+                         ^
+  符号:   类 Util
+  位置: 程序包 net.minecraft.util
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\AvalonNetwork.java:6: 错误: 找不到符号
+import net.minecraft.resources.Identifier;
+                              ^
+  符号:   类 Identifier
+  位置: 程序包 net.minecraft.resources
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\INetworkHandler.java:4: 错误: 找不到符号
+import net.minecraft.resources.Identifier;
+                              ^
+  符号:   类 Identifier
+  位置: 程序包 net.minecraft.resources
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\AvalonNetwork.java:77: 错误: 找不到符号
+    public static <T> void registerMessage(Identifier channel, Class<T> clazz,
+                                           ^
+  符号:   类 Identifier
+  位置: 类 AvalonNetwork
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\AvalonNetwork.java:87: 错误: 找不到符号
+    public static <T> void sendToServer(Identifier channel, T message) {
+                                        ^
+  符号:   类 Identifier
+  位置: 类 AvalonNetwork
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\AvalonNetwork.java:94: 错误: 找不到符号
+    public static <T> void sendToAll(MinecraftServer server, Identifier channel, T message) {
+                                                             ^
+  符号:   类 Identifier
+  位置: 类 AvalonNetwork
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\AvalonNetwork.java:101: 错误: 找不到符号
+    public static <T> void sendToPlayer(ServerPlayer player, Identifier channel, T message) {
+                                                             ^
+  符号:   类 Identifier
+  位置: 类 AvalonNetwork
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\INetworkHandler.java:27: 错误: 找不到符号
+    <T> void registerMessage(Identifier channel, Class<T> clazz,
+                             ^
+  符号:   类 Identifier
+  位置: 接口 INetworkHandler
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\INetworkHandler.java:35: 错误: 找不到符号
+    <T> void sendToServer(Identifier channel, T message);
+                          ^
+  符号:   类 Identifier
+  位置: 接口 INetworkHandler
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\INetworkHandler.java:40: 错误: 找不到符号
+    <T> void sendToAll(MinecraftServer server, Identifier channel, T message);
+                                               ^
+  符号:   类 Identifier
+  位置: 接口 INetworkHandler
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\INetworkHandler.java:45: 错误: 找不到符号
+    <T> void sendToPlayer(ServerPlayer player, Identifier channel, T message);
+                                               ^
+  符号:   类 Identifier
+  位置: 接口 INetworkHandler
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\GuiCursor.java:41: 错误: 找不到符号
+        long window = Minecraft.getInstance().getWindow().handle();
+                                                         ^
+  符号:   方法 handle()
+  位置: 类 Window
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\GuiCursor.java:47: 错误: 找不到符号
+        long window = Minecraft.getInstance().getWindow().handle();
+                                                         ^
+  符号:   方法 handle()
+  位置: 类 Window
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\screen\AvalonConfigScreen.java:58: 错误: 找不到符号
+                && minecraft.player.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER);
+                                                                ^
+  符号:   变量 Permissions
+  位置: 类 AvalonConfigScreen
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\screen\AvalonConfigScreen.java:58: 错误: 找不到符号
+                && minecraft.player.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER);
+                                   ^
+  符号:   方法 permissions()
+  位置: 类型为LocalPlayer的变量 player
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\screen\AvalonConfigScreen.java:236: 错误: 找不到符号
+        long window = Minecraft.getInstance().getWindow().handle();
+                                                         ^
+  符号:   方法 handle()
+  位置: 类 Window
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\theme\Anim.java:10: 错误: 找不到符号
+    private long lastTime = Util.getMillis();
+                            ^
+  符号:   变量 Util
+  位置: 类 Anim
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\theme\Anim.java:33: 错误: 找不到符号
+        long now = Util.getMillis();
+                   ^
+  符号:   变量 Util
+  位置: 类 Anim
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\theme\ThemedButton.java:25: 错误: 方法不会覆盖或实现超类型的方法
+    @Override
+    ^
+D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\theme\ThemedButton.java:28: 错误: 找不到符号
+            renderDefaultSprite(g);
+            ^
+  符号:   方法 renderDefaultSprite(GuiGraphics)
+  位置: 类 ThemedButton
+21 个错误
+
+> Task :common:compileJava FAILED
+
+[Incubating] Problems report is available at: file:///D:/%E6%B5%8F%E8%A7%88%E5%99%A8/Mymods/Only%20TP%20Re/AvalonBase/1.21.8/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':common:compileJava'.
+> Compilation failed; see the compiler output below.
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\theme\Anim.java:3: 错误: 找不到符号
+  import net.minecraft.util.Util;
+                           ^
+    符号:   类 Util
+    位置: 程序包 net.minecraft.util
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\AvalonNetwork.java:6: 错误: 找不到符号
+  import net.minecraft.resources.Identifier;
+                                ^
+    符号:   类 Identifier
+    位置: 程序包 net.minecraft.resources
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\INetworkHandler.java:4: 错误: 找不到符号
+  import net.minecraft.resources.Identifier;
+                                ^
+    符号:   类 Identifier
+    位置: 程序包 net.minecraft.resources
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\AvalonNetwork.java:77: 错误: 找不到符号
+      public static <T> void registerMessage(Identifier channel, Class<T> clazz,
+                                             ^
+    符号:   类 Identifier
+    位置: 类 AvalonNetwork
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\AvalonNetwork.java:87: 错误: 找不到符号
+      public static <T> void sendToServer(Identifier channel, T message) {
+                                          ^
+    符号:   类 Identifier
+    位置: 类 AvalonNetwork
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\AvalonNetwork.java:94: 错误: 找不到符号
+      public static <T> void sendToAll(MinecraftServer server, Identifier channel, T message) {
+                                                               ^
+    符号:   类 Identifier
+    位置: 类 AvalonNetwork
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\AvalonNetwork.java:101: 错误: 找不到符号
+      public static <T> void sendToPlayer(ServerPlayer player, Identifier channel, T message) {
+                                                               ^
+    符号:   类 Identifier
+    位置: 类 AvalonNetwork
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\INetworkHandler.java:27: 错误: 找不到符号
+      <T> void registerMessage(Identifier channel, Class<T> clazz,
+                               ^
+    符号:   类 Identifier
+    位置: 接口 INetworkHandler
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\INetworkHandler.java:35: 错误: 找不到符号
+      <T> void sendToServer(Identifier channel, T message);
+                            ^
+    符号:   类 Identifier
+    位置: 接口 INetworkHandler
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\INetworkHandler.java:40: 错误: 找不到符号
+      <T> void sendToAll(MinecraftServer server, Identifier channel, T message);
+                                                 ^
+    符号:   类 Identifier
+    位置: 接口 INetworkHandler
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\network\INetworkHandler.java:45: 错误: 找不到符号
+      <T> void sendToPlayer(ServerPlayer player, Identifier channel, T message);
+                                                 ^
+    符号:   类 Identifier
+    位置: 接口 INetworkHandler
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\screen\AvalonConfigScreen.java:58: 错误: 找不到符号
+                  && minecraft.player.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER);
+                                                                  ^
+    符号:   变量 Permissions
+    位置: 类 AvalonConfigScreen
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\theme\Anim.java:10: 错误: 找不到符号
+      private long lastTime = Util.getMillis();
+                              ^
+    符号:   变量 Util
+    位置: 类 Anim
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\theme\Anim.java:33: 错误: 找不到符号
+          long now = Util.getMillis();
+                     ^
+    符号:   变量 Util
+    位置: 类 Anim
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\theme\ThemedButton.java:25: 错误: 方法不会覆盖或实现超类型的方法
+      @Override
+      ^
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\GuiCursor.java:41: 错误: 找不到符号
+          long window = Minecraft.getInstance().getWindow().handle();
+                                                           ^
+    符号:   方法 handle()
+    位置: 类 Window
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\GuiCursor.java:47: 错误: 找不到符号
+          long window = Minecraft.getInstance().getWindow().handle();
+                                                           ^
+    符号:   方法 handle()
+    位置: 类 Window
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\screen\AvalonConfigScreen.java:58: 错误: 找不到符号
+                  && minecraft.player.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER);
+                                     ^
+    符号:   方法 permissions()
+    位置: 类型为LocalPlayer的变量 player
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\screen\AvalonConfigScreen.java:236: 错误: 找不到符号
+          long window = Minecraft.getInstance().getWindow().handle();
+                                                           ^
+    符号:   方法 handle()
+    位置: 类 Window
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\theme\ThemedButton.java:28: 错误: 找不到符号
+              renderDefaultSprite(g);
+              ^
+    符号:   方法 renderDefaultSprite(GuiGraphics)
+    位置: 类 ThemedButton
+  D:\浏览器\Mymods\Only TP Re\AvalonBase\1.21.8\common\src\main\java\com\avalon\base\gui\screen\AvalonConfigScreen.java:14: 错误: 程序包net.minecraft.server.permissions不存在
+  import net.minecraft.server.permissions.Permissions;
+                                         ^
+  21 个错误
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 10m 40s
+9 actionable tasks: 9 executed
