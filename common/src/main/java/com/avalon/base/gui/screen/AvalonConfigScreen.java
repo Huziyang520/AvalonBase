@@ -1,5 +1,7 @@
 package com.avalon.base.gui.screen;
 
+import com.avalon.base.gui.anim.ScreenAnim;
+import com.avalon.base.gui.anim.ScreenAnimType;
 import com.avalon.base.gui.theme.GuiTheme;
 import com.avalon.base.gui.theme.ModernTheme;
 import com.avalon.base.gui.theme.ThemedButton;
@@ -33,8 +35,6 @@ public abstract class AvalonConfigScreen extends Screen {
     protected static final int CONTENT_MAX_Y = 218;
     protected static final int MAX_VISIBLE_ITEMS = 3;
     protected static final int LIST_ITEM_H = 14;
-    /** 配置屏背景色（近不透明深色，压暗游戏画面防闪屏）。 */
-    private static final int BACKDROP_COLOR = 0xC0101010;
 
     protected static final GuiTheme VANILLA_THEME = new VanillaTheme();
     protected static final GuiTheme MODERN_THEME = new ModernTheme();
@@ -65,13 +65,76 @@ public abstract class AvalonConfigScreen extends Screen {
      */
     private static final int CONTENT_BOTTOM_REL = CONTENT_MAX_Y + 14;
 
-    @Override
-    public void onClose() {
+    // ═══════════ 开/关屏动画（新增能力；不调用 configureAnimations 时与旧行为完全一致） ═══════════
+
+    /** 本屏动画器；未调用 {@link #configureAnimations} 时恒为“无动画”。 */
+    private ScreenAnim animation = ScreenAnim.disabled();
+
+    /** 真正切屏是否已执行：防止关闭动画收尾与 tick 同时触发导致重复切屏。 */
+    private boolean closeDone;
+
+    /**
+     * 配置本屏的开/关动画。业务子类在自己的构造函数里调用一次即可；
+     * <b>不调用 = 无动画</b>（保持向后兼容，不影响既有调用方）。
+     *
+     * @param enabled 是否启用（业务模组的「启用动画效果」开关直接传进来）
+     * @param open    开屏动画类型
+     * @param close   关屏动画类型
+     */
+    protected void configureAnimations(boolean enabled, ScreenAnimType open, ScreenAnimType close) {
+        this.animation = enabled ? new ScreenAnim(open, close) : ScreenAnim.disabled();
+        this.closeDone = false;
+    }
+
+    /** 播放开屏动画（在构造函数里紧接 {@link #configureAnimations} 调用一次）。 */
+    protected void playOpenAnimation() {
+        animation.playOpen();
+    }
+
+    /** 本屏动画器（需要自行做坐标换算或查询进度时使用）。 */
+    public ScreenAnim animation() {
+        return animation;
+    }
+
+    /**
+     * 动画帧开始：推进时间轴并施加位姿变换。业务子类应在 {@code extractRenderState} 首行
+     * （背景铺色之后）调用，末行调用 {@link #endAnimatedRender}；并把 mouseX/mouseY 换成
+     * 动画坐标系：{@code mouseX = (int) animation().localX(mouseX, width);}
+     */
+    protected void beginAnimatedRender(GuiGraphicsExtractor graphics) {
+        animation.beginFrame(graphics, width, height);
+    }
+
+    /** 动画帧结束：撤销位姿变换 + 绘制黑幕，并兜底“关闭动画已播完”的收尾（不依赖 tick）。 */
+    protected void endAnimatedRender(GuiGraphicsExtractor graphics) {
+        animation.endFrame(graphics, width, height);
+        if (animation.isCloseFinished()) doClose();
+    }
+
+    /**
+     * 真正切屏：返回父界面（无父界面则走原版默认关闭）。有关闭动画时由动画播完后调用。
+     */
+    protected void doClose() {
+        if (closeDone) return;
+        closeDone = true;
         if (parentScreen != null && minecraft != null) {
             minecraft.setScreenAndShow(parentScreen);
         } else {
             super.onClose();
         }
+    }
+
+    @Override
+    public void onClose() {
+        // 有关闭动画 → 先播动画，播完再由 doClose() 真正切屏
+        if (animation.beginClose()) return;
+        doClose();
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (animation.isCloseFinished()) doClose();
     }
 
     /**
@@ -157,24 +220,17 @@ public abstract class AvalonConfigScreen extends Screen {
     }
 
     /**
-     * 背景通道：直接铺一层近不透明的深色背景。
+     * 背景通道：完全交给原版 {@link Screen#extractBackground}。
      *
-     * <p>26.2 渲染分 {@code extractBackground}（背景）与 {@code extractRenderState}（内容）两趟。
-     * 若此处置空，打开本屏（{@link #isPauseScreen()} 为 true）时原版暂停画面的模糊暗背景消失，
-     * 只靠 {@link #renderBackdrop} 的 33% 透明层遮不住清晰发亮的游戏画面，会出现"闪一下"。
-     * 因此这里与 renderBackdrop 用同一深色铺满全屏，从背景趟就压暗游戏画面。</p>
+     * <p>原版按场景自动选择背景：主菜单（{@code minecraft.level == null}）= 全景图 + 模糊 +
+     * 菜单背景贴图；世界内 = 模糊 + {@code inworld_menu_background} 半透明暗底。
+     * 这样从主菜单打开配置界面时能看到菜单背景，世界内是标准暗化层，观感与其它模组配置界面一致。</p>
+     *
+     * <p>旧实现整屏铺 {@code 0xC0101010} 近不透明深色，在主菜单里会把菜单背景整个盖住（背景"不透明"）。</p>
      */
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
-        graphics.fill(0, 0, this.width, this.height, BACKDROP_COLOR);
-    }
-
-    /**
-     * 自绘深色背景；业务子类应在自绘内容之前调用一次。
-     * 颜色近不透明，避免游戏画面透出造成闪屏。
-     */
-    protected void renderBackdrop(GuiGraphicsExtractor graphics) {
-        graphics.fill(0, 0, this.width, this.height, BACKDROP_COLOR);
+        super.extractBackground(graphics, mouseX, mouseY, partialTick);
     }
 
     /**
@@ -193,7 +249,10 @@ public abstract class AvalonConfigScreen extends Screen {
      */
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
+        // 只读遮罩必须整屏、且不随开/关动画缩放：先临时退出动画变换再铺，铺完恢复
+        boolean suspended = animation.suspend(graphics);
         renderReadonlyOverlay(graphics);
+        if (suspended) animation.resume(graphics, width, height);
         for (var child : children()) {
             if (child instanceof Renderable renderable) {
                 renderable.extractRenderState(graphics, mouseX, mouseY, partialTick);

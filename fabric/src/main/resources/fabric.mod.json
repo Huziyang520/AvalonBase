@@ -33,8 +33,10 @@
     },
     "custom": {
         "modmenu": {
-            "hidden": true,
-            "badges": []
+            "badges": [],
+            "links": {
+                "avalonbase.feedback": "https://issue.mengcai.online/"
+            }
         }
     }
 }
