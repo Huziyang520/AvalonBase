@@ -3,11 +3,12 @@
     "id": "avalonbase",
     "version": "${version}",
     "name": "${mod_name}",
-    "description": "${description}",
+    "description": "[EN] A shared support library providing GUI themes, a config framework and networking for other mods.\n[CN] 共享支持库：为其他模组提供 GUI 主题、配置框架与网络功能。",
     "authors": [
         "${mod_author}"
     ],
     "contact": {
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/avalonbase",
         "issues": "https://github.com/Huziyang520/AvalonBase/issues"
     },
     "license": "${license}",
@@ -32,8 +33,10 @@
     },
     "custom": {
         "modmenu": {
-            "hidden": true,
-            "badges": []
+            "badges": [],
+            "links": {
+                "avalonbase.feedback": "https://issue.mengcai.online/"
+            }
         }
     }
 }
