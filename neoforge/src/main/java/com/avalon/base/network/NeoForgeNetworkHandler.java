@@ -11,7 +11,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
@@ -55,7 +54,7 @@ public class NeoForgeNetworkHandler implements INetworkHandler {
         registrar.playBidirectional(
                 AvalonPayload.TYPE,
                 AvalonPayload.STREAM_CODEC,
-                new DirectionalPayloadHandler<>(NeoForgeNetworkHandler::handle, NeoForgeNetworkHandler::handle)
+                NeoForgeNetworkHandler::handle
         );
     }
 

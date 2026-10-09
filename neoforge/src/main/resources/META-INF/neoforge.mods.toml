@@ -1,14 +1,22 @@
 modLoader = "javafml"
 loaderVersion = "${neoforge_loader_version_range}"
 license = "${license}"
-issueTrackerURL = "https://github.com/Huziyang520/AvalonBase/issues"
 [[mods]]
 modId = "${mod_id}"
 version = "${version}"
 displayName = "${mod_name}"
+# displayURL / issueTrackerURL / iconFile / logoFile are mod-specific and MUST live in
+# the [[mods]] table; placed at the top level NeoForge silently ignores them
+# and the mod-list homepage button stays disabled.
+# 1.21.2~1.21.8 only know the deprecated logoFile (iconFile/bannerFile are 26.2+ slots).
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/avalonbase"
+issueTrackerURL = "https://github.com/Huziyang520/AvalonBase/issues"
 logoFile = "assets/avalonbase/textures/avalonbase.png"
 authors = "${mod_author}"
-description = '''${description}'''
+description = '''
+[EN] A shared support library providing GUI themes, a config framework and networking for other mods.
+[CN] 共享支持库：为其他模组提供 GUI 主题、配置框架与网络功能。
+'''
 [[dependencies.${mod_id}]]
 modId = "neoforge"
 type = "required"
