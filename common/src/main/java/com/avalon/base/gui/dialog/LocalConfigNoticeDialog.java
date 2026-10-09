@@ -4,6 +4,7 @@ import com.avalon.base.gui.panel.PanelButton;
 import com.avalon.base.gui.panel.PanelPalette;
 import com.avalon.base.gui.panel.PanelScreen;
 import com.avalon.base.gui.panel.PanelTheme;
+import com.avalon.base.gui.util.MouseButtons;
 import com.avalon.base.gui.util.TextFit;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
@@ -90,7 +91,7 @@ public class LocalConfigNoticeDialog extends PanelScreen {
 
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
-        if (event.button() == 0) {
+        if (MouseButtons.isLeft(event)) {
             int boxX = left + 12;
             int boxY = top + panelH - 10 - BTN_H + (BTN_H - BOX) / 2;
             if (inside((int) event.x(), (int) event.y(), boxX - 2, boxY - 2, BOX + 8 + font.width(checkboxLabel), BOX + 4)) {

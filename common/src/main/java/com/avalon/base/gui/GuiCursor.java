@@ -1,59 +1,40 @@
 package com.avalon.base.gui;
 
-import net.minecraft.client.Minecraft;
-import org.lwjgl.glfw.GLFW;
+import com.mojang.blaze3d.platform.cursor.CursorTypes;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 /**
- * 通用光标工具（静态门面）：统一持有并设置 GLFW 手形/箭头光标。
+ * Generic cursor helper (static facade) for the MC 26.3 cursor API.
  *
- * <p>只提供设置光标的纯工具方法，不做任何屏幕级遍历或帧级判定。
- * 业务模组在自己按钮的绘制代码（如 {@code renderWidget}）里悬停时调用
- * {@link #applyHand()} 显示手形即可。
+ * <p>MC 26.3 replaced GLFW with SDL <b>and</b> reworked how cursors are chosen:
+ * the cursor is requested through {@link GuiGraphicsExtractor#requestCursor}
+ * during extraction and applied to the window once at the end of the frame
+ * ({@code GuiGraphicsExtractor.applyCursor(Window)}). Calling
+ * {@code Window.selectCursor(...)} directly is therefore overwritten at frame end
+ * and must not be used for hover feedback.
  *
- * <p>光标句柄惰性创建并缓存，进程内复用，避免重复 {@code glfwCreateStandardCursor}。
+ * <p>Vanilla widgets do this via {@code AbstractWidget.handleCursor(...)}. Custom
+ * drawn controls (which are not widgets and hit-test themselves) must request the
+ * pointing hand explicitly, exactly like this helper does.
+ *
+ * <p>Only request the hand when needed; never request the arrow, otherwise it would
+ * clobber the cursor requested by vanilla widgets (buttons / text fields) in the
+ * same frame.
  */
 public final class GuiCursor {
-
-    private static long handCursor = 0L;
-    private static long arrowCursor = 0L;
 
     private GuiCursor() {
     }
 
-    /** 惰性获取手形光标句柄（{@code GLFW_HAND_CURSOR}）。 */
-    public static long hand() {
-        if (handCursor == 0L) {
-            handCursor = GLFW.glfwCreateStandardCursor(GLFW.GLFW_HAND_CURSOR);
-        }
-        return handCursor;
+    /** Request the pointing-hand cursor for the current frame. */
+    public static void requestHand(GuiGraphicsExtractor graphics) {
+        graphics.requestCursor(CursorTypes.POINTING_HAND);
     }
 
-    /** 惰性获取箭头光标句柄（{@code GLFW_ARROW_CURSOR}）。 */
-    public static long arrow() {
-        if (arrowCursor == 0L) {
-            arrowCursor = GLFW.glfwCreateStandardCursor(GLFW.GLFW_ARROW_CURSOR);
-        }
-        return arrowCursor;
-    }
-
-    /** 把当前窗口光标设为手形。 */
-    public static void applyHand() {
-        long window = Minecraft.getInstance().getWindow().handle();
-        GLFW.glfwSetCursor(window, hand());
-    }
-
-    /** 把当前窗口光标设为箭头。 */
-    public static void applyArrow() {
-        long window = Minecraft.getInstance().getWindow().handle();
-        GLFW.glfwSetCursor(window, arrow());
-    }
-
-    /** 按 {@code hand} 设置光标：{@code true} 为手形，{@code false} 为箭头。 */
-    public static void apply(boolean hand) {
+    /** Request the pointing hand only when {@code hand} is true. */
+    public static void request(GuiGraphicsExtractor graphics, boolean hand) {
         if (hand) {
-            applyHand();
-        } else {
-            applyArrow();
+            graphics.requestCursor(CursorTypes.POINTING_HAND);
         }
     }
 }

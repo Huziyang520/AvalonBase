@@ -3,7 +3,7 @@
     "id": "avalonbase",
     "version": "${version}",
     "name": "${mod_name}",
-    "description": "${description}",
+    "description": "[EN] A shared support library providing GUI themes, a config framework and networking for other mods.\n[CN] 共享支持库：为其他模组提供 GUI 主题、配置框架与网络功能。",
     "authors": [
         "${mod_author}"
     ],
@@ -33,8 +33,10 @@
     },
     "custom": {
         "modmenu": {
-            "hidden": true,
-            "badges": []
+            "badges": [],
+            "links": {
+                "avalonbase.feedback": "https://issue.mengcai.online/"
+            }
         }
     }
 }

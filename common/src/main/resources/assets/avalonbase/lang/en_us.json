@@ -12,5 +12,6 @@
     "avalonbase.demo.rowAmount": "123,456,789",
     "avalonbase.demo.duration": "Cooldown",
     "avalonbase.demo.durationValue": "1d 14h",
-    "avalonbase.demo.longText": "This is a very long English paragraph used to verify that auto word-wrapping keeps every line inside the panel edge no matter how narrow the window becomes."
+    "avalonbase.demo.longText": "This is a very long English paragraph used to verify that auto word-wrapping keeps every line inside the panel edge no matter how narrow the window becomes.",
+    "avalonbase.feedback": "Backup feedback address"
 }
