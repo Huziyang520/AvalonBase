@@ -3,8 +3,8 @@ package com.avalon.base.network;
 import com.avalon.base.network.INetworkHandler.MessageContext;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.FriendlyByteBuf;
@@ -119,7 +119,7 @@ public class FabricNetworkHandler implements INetworkHandler {
     }
 
     private static <T> ChannelPayload wrap(ResourceLocation channel, Registration<T> reg, T message) {
-        FriendlyByteBuf buf = PacketByteBufs.create();
+        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         reg.encoder.accept(message, buf);
         byte[] bytes = new byte[buf.readableBytes()];
         buf.readBytes(bytes);
@@ -152,7 +152,7 @@ public class FabricNetworkHandler implements INetworkHandler {
 
         @SuppressWarnings("unchecked")
         private T decode(ChannelPayload payload) {
-            FriendlyByteBuf buf = PacketByteBufs.create();
+            FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
             buf.writeBytes(payload.data());
             return decoder.apply(buf);
         }

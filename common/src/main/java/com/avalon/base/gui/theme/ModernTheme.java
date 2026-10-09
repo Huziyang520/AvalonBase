@@ -1,6 +1,5 @@
 package com.avalon.base.gui.theme;
 
-
 import net.minecraft.client.gui.GuiGraphics;
 
 /**

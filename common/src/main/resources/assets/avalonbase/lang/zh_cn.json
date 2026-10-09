@@ -1,0 +1,17 @@
+{
+    "avalonbase.demo.title": "AvalonBase 面板演示",
+    "avalonbase.demo.normal": "普通",
+    "avalonbase.demo.primary": "主按钮",
+    "avalonbase.demo.danger": "危险",
+    "avalonbase.demo.tab": "标签",
+    "avalonbase.demo.toastOk": "成功提示",
+    "avalonbase.demo.toastError": "错误提示",
+    "avalonbase.demo.toastOkMsg": "保存成功喵",
+    "avalonbase.demo.toastErrorMsg": "出了问题喵",
+    "avalonbase.demo.rowItem": "附魔金苹果（名字特别特别特别长的展示）",
+    "avalonbase.demo.rowAmount": "123,456,789",
+    "avalonbase.demo.duration": "冷却时间",
+    "avalonbase.demo.durationValue": "1天14小时",
+    "avalonbase.demo.longText": "这是一段非常长的中文段落，用于验证自动排版能把每一行都折进面板边缘内，即使窗口缩到很窄也不会出框。",
+    "avalonbase.feedback": "备用反馈地址"
+}
