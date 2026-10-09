@@ -10,7 +10,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
-import net.neoforged.neoforge.client.network.event.RegisterClientPayloadHandlersEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
@@ -56,18 +55,9 @@ public class NeoForgeNetworkHandler implements INetworkHandler {
         registrar.playBidirectional(
                 AvalonPayload.TYPE,
                 AvalonPayload.STREAM_CODEC,
+                NeoForgeNetworkHandler::handle,
                 NeoForgeNetworkHandler::handle
         );
-    }
-
-    /**
-     * NeoForge 21.11+ 要求客户端侧（clientbound）payload 必须通过客户端专属事件
-     * {@code RegisterClientPayloadHandlersEvent} 单独注册处理回调，否则启动时
-     * {@code ClientNetworkRegistry.setup} 会因「clientbound payload 缺少客户端 handler」直接崩溃。
-     * 由客户端入口在 mod 事件总线上监听本事件并调用。
-     */
-    public static void onRegisterClientPayloadHandlers(final RegisterClientPayloadHandlersEvent event) {
-        event.register(AvalonPayload.TYPE, NeoForgeNetworkHandler::handle);
     }
 
     @Override

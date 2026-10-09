@@ -1,11 +1,13 @@
 package com.avalon.base;
 
+import com.avalon.base.client.AvalonBaseClientMod;
 import com.avalon.base.network.AvalonNetwork;
 import com.avalon.base.network.NeoForgeNetworkHandler;
 import com.mojang.logging.LogUtils;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 
 /**
@@ -16,16 +18,16 @@ import org.slf4j.Logger;
 public class AvalonBaseMod {
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public AvalonBaseMod(IEventBus modEventBus) {
+    public AvalonBaseMod(IEventBus modEventBus, Dist dist) {
         // 注册 payload 类型：NeoForge 需在启动时通过 RegisterPayloadHandlersEvent 一次性注册。
         // 由于注册发生在各模组 commonSetup 的并行初始化之前，这里先于注入 handler 完成监听注册。
         modEventBus.addListener(NeoForgeNetworkHandler::onRegisterPayloadHandlers);
-        // NeoForge 21.11+ 需在客户端补充注册 clientbound payload 的处理器，否则启动时崩溃。
-        if (FMLEnvironment.getDist().isClient()) {
-            modEventBus.addListener(NeoForgeNetworkHandler::onRegisterClientPayloadHandlers);
-        }
         // 尽早注入网络实现，避免下游模组在并行初始化时读取到未注入的 handler。
         AvalonNetwork.set(NeoForgeNetworkHandler.INSTANCE);
+        // 客户端能力（demo 命令）仅在客户端挂载，避免专用服务器加载客户端类。
+        if (dist.isClient()) {
+            AvalonBaseClientMod.registerCommands(NeoForge.EVENT_BUS);
+        }
         LOGGER.info("AvalonBase loaded!");
     }
 }
