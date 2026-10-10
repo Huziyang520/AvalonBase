@@ -1,6 +1,5 @@
 package com.avalon.base.gui.theme;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 
 /**
@@ -35,9 +34,7 @@ public final class ModernTheme implements GuiTheme {
         // 渐变背景
         g.fillGradient(x, y, x + w, y + h, palette.panelTop, palette.panelBottom);
         // 外阴影（右下偏移）
-        RenderSystem.enableBlend();
         g.fill(x + 3, y + 3, x + w + 3, y + h + 3, palette.panelShadow);
-        RenderSystem.disableBlend();
         // 直角边框线
         g.fill(x, y, x + w, y + 1, palette.border);
         g.fill(x, y + h - 1, x + w, y + h, palette.border);
