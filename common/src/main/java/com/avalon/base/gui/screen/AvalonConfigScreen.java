@@ -133,6 +133,7 @@ public abstract class AvalonConfigScreen extends Screen {
     @Override
     public void tick() {
         super.tick();
+        animation.tick();
         if (animation.isCloseFinished()) doClose();
     }
 
@@ -229,6 +230,13 @@ public abstract class AvalonConfigScreen extends Screen {
      */
     @Override
     public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+        // 防闪（SKILL.md §10.28）：退场动画播完的那一帧，本屏不再绘制自己的背景，
+        // 并在背景阶段就交回父界面——否则本屏背景与父界面背景会叠在同一帧，看到一次跳变。
+        animation.tick();
+        if (animation.isClosing() && animation.isCloseFinished()) {
+            doClose(); // 与本次 return 成对：不可只留一半
+            return;
+        }
         super.renderBackground(graphics, mouseX, mouseY, partialTick);
     }
 
