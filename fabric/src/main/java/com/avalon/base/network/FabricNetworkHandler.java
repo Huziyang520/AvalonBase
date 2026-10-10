@@ -38,7 +38,7 @@ public class FabricNetworkHandler implements INetworkHandler {
 
     public static final FabricNetworkHandler INSTANCE = new FabricNetworkHandler();
 
-    private static final ResourceLocation PAYLOAD_ID = ResourceLocation.fromNamespaceAndPath("avalonbase", "network");
+    private static final ResourceLocation PAYLOAD_ID = new ResourceLocation("avalonbase", "network");
 
     // 注册表：channel -> 编解码与处理回调
     private static final Map<ResourceLocation, Registration<?>> REGISTRY = new ConcurrentHashMap<>();

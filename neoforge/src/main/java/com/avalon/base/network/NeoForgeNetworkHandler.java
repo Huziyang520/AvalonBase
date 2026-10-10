@@ -131,7 +131,7 @@ public class NeoForgeNetworkHandler implements INetworkHandler {
     public record AvalonPayload(ResourceLocation channel, byte[] data) implements CustomPacketPayload {
 
         public static final CustomPacketPayload.Type<AvalonPayload> TYPE =
-                new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "main"));
+                new CustomPacketPayload.Type<>(new ResourceLocation(Constants.MOD_ID, "main"));
 
         public static final StreamCodec<ByteBuf, AvalonPayload> STREAM_CODEC = StreamCodec.of(
                 (buf, payload) -> {
