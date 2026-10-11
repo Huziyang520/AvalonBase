@@ -56,9 +56,12 @@ public final class AvalonNetwork {
      */
     private static void initByPlatform() {
         String platform = Services.PLATFORM.getPlatformName();
-        String implClass = "Forge".equals(platform)
-                ? "com.avalon.base.network.ForgeNetworkHandler"
-                : "com.avalon.base.network.FabricNetworkHandler";
+        String implClass = switch (platform) {
+            case "Forge" -> "com.avalon.base.network.ForgeNetworkHandler";
+            case "NeoForge" -> "com.avalon.base.network.NeoForgeNetworkHandler";
+            case "Fabric" -> "com.avalon.base.network.FabricNetworkHandler";
+            default -> throw new IllegalStateException("Unknown platform: " + platform);
+        };
         try {
             Class<?> clazz = Class.forName(implClass);
             handler = (INetworkHandler) clazz.getField("INSTANCE").get(null);

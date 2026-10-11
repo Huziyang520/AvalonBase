@@ -64,12 +64,12 @@ public final class VanillaTheme implements GuiTheme {
         }
     }
 
-    @Override public int titleColor() { return 0x404040; }
-    @Override public int labelColor() { return 0x404040; }
-    @Override public int textColor() { return 0x303030; }
-    @Override public int disabledColor() { return 0x808080; }
-    @Override public int okColor() { return 0x2E7D32; }
-    @Override public int warnColor() { return 0xB02020; }
+    @Override public int titleColor() { return 0xFF404040; }
+    @Override public int labelColor() { return 0xFF404040; }
+    @Override public int textColor() { return 0xFF303030; }
+    @Override public int disabledColor() { return 0xFF808080; }
+    @Override public int okColor() { return 0xFF2E7D32; }
+    @Override public int warnColor() { return 0xFFB02020; }
     @Override public boolean vanillaButtons() { return true; }
     @Override public boolean animated() { return false; }
 }
