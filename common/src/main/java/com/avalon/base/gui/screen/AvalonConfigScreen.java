@@ -1,6 +1,5 @@
 package com.avalon.base.gui.screen;
 
-import com.avalon.base.gui.GuiCursor;
 import com.avalon.base.gui.anim.ScreenAnim;
 import com.avalon.base.gui.anim.ScreenAnimType;
 import com.avalon.base.gui.theme.GuiTheme;
@@ -232,7 +231,7 @@ public abstract class AvalonConfigScreen extends Screen {
             doClose(); // 与本次 return 成对：不可只留一半
             return;
         }
-        // no-op：见上述说明
+        super.renderBackground(graphics, mouseX, mouseY, partialTick);
     }
 
     /**
@@ -336,7 +335,6 @@ public abstract class AvalonConfigScreen extends Screen {
      */
     protected void updateCursor(boolean showHand) {
         // 只在需要手形时设置；不设置箭头，以免覆盖原版控件（按钮/输入框）自己设置的光标。
-        if (showHand) GuiCursor.applyHand();
     }
 
     @Override
