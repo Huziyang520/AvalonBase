@@ -1,6 +1,5 @@
 package com.avalon.base.gui.screen;
 
-import com.avalon.base.gui.GuiCursor;
 import com.avalon.base.gui.anim.ScreenAnim;
 import com.avalon.base.gui.anim.ScreenAnimType;
 import com.avalon.base.gui.theme.GuiTheme;
@@ -335,7 +334,6 @@ public abstract class AvalonConfigScreen extends Screen {
     protected void updateCursor(GuiGraphics graphics, boolean showHand) {
         // 1.21.8（GLFW）：直接设置窗口光标即可，帧内不会被回写覆盖。
         // 只在需要手形时设置；不设置箭头，以免覆盖原版控件（按钮/输入框）自己设置的光标。
-        if (showHand) GuiCursor.applyHand();
     }
 
     @Override
